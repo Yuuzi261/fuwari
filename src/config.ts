@@ -30,6 +30,14 @@ export const siteConfig: SiteConfig = {
     //   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
     //   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
     // }
+    {
+      src: '/favicon/favicon-nekoya-32.png',
+      sizes: '32x32'
+    },
+    {
+      src: '/favicon/favicon-nekoya-128.png',
+      sizes: '128x128'
+    },
   ]
 }
 
