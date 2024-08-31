@@ -51,17 +51,22 @@ export const profileConfig: ProfileConfig = {
   name: 'Yuuzi',
   bio: 'Gott ist tot. Hi there, I\'m a programmer who loves anime. This place will probably have some random tutorials and notes.',
   links: [
+    // {
+    //   name: 'Twitter',
+    //   icon: 'fa6-brands:twitter',       // Visit https://icones.js.org/ for icon codes
+    //                                     // You will need to install the corresponding icon set if it's not already included
+    //                                     // `pnpm add @iconify-json/<icon-set-name>`
+    //   url: 'https://twitter.com',
+    // },
     {
-      name: 'Twitter',
-      icon: 'fa6-brands:twitter',       // Visit https://icones.js.org/ for icon codes
-                                        // You will need to install the corresponding icon set if it's not already included
-                                        // `pnpm add @iconify-json/<icon-set-name>`
-      url: 'https://twitter.com',
+      name: 'Email',
+      icon: 'ic:round-email',
+      url: 'mailto:yuuzi261@yuuzi.cc',
     },
     {
-      name: 'Steam',
-      icon: 'fa6-brands:steam',
-      url: 'https://store.steampowered.com',
+      name: 'Discord',
+      icon: 'fa6-brands:discord',
+      url: 'https://discord.com/users/431016551261405195',
     },
     {
       name: 'GitHub',
