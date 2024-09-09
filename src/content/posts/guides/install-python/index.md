@@ -6,7 +6,7 @@ image: ''
 tags: [Python, Installation]
 category: 'Guides'
 draft: false 
-language: 'zh_TW'
+lang: 'zh_TW'
 ---
 
 # 方法1：直接從Microsoft Store安裝

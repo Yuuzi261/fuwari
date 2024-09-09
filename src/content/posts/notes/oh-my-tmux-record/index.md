@@ -6,7 +6,7 @@ image: ''
 tags: ['Terminal', 'Tmux', 'Customize', 'Installation']
 category: 'Notes'
 draft: false 
-language: 'zh_TW'
+lang: 'zh_TW'
 ---
 
 ## 前言

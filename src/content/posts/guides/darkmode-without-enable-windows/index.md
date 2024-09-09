@@ -6,7 +6,7 @@ image: ''
 tags: [Windows, Dark Mode]
 category: 'Guides'
 draft: false 
-language: 'zh_TW'
+lang: 'zh_TW'
 ---
 
 ## 前言

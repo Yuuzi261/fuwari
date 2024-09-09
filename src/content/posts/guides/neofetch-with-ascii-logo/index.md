@@ -6,7 +6,7 @@ image: ''
 tags: [Terminal, Neofetch, Customize]
 category: 'Guides'
 draft: false 
-language: 'zh_TW'
+lang: 'zh_TW'
 ---
 
 ## 使用 jp2a 轉換圖片為 ASCII 藝術
