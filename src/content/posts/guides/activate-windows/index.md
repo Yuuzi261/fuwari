@@ -4,7 +4,7 @@ published: 2024-09-08
 description: '我...我只是要給虛擬機用而已，自己的主機有乖乖買正版喔，微軟把拔高抬貴手'
 image: ''
 tags: ['Windows']
-category: 'guides'
+category: 'Guides'
 draft: false 
 language: 'zh_TW'
 ---
