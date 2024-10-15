@@ -13,6 +13,10 @@ lang: 'zh_TW'
 
 雖然我上一篇才寫了一篇和Neofetch有關的文章，不過那其實是我以前寫然後搬來這裡的，最近跳槽到Fastfetch我覺得在Windows速度很可以啊，畢竟他是用C寫的，而Neofetch則是用bash實現的。這篇不會細講怎麼將ASCII藝術放入Fastfetch，老實說我也還沒玩得很明白，暫且是透過Python腳本把以前用jp2a轉換的ASCII藝術改寫成for Fastfetch的，總之廢話不多說進入正題。
 
+## 更新 (2024/10/15)
+
+原作者把文給刪了，所以這裡放上新的連結，下面教學步驟的連結我也會一起換掉，如果比較喜歡作者原本的舊版，可以直接拉到最下面載我提供的版本來改。
+
 ## 安裝Fastfetch
 
 安裝Fastfetch很簡單，從自己的OS選擇自己喜歡的方式，我簡單瀏覽過看起來方法並不少，Fastfetch的Repo位址👇
@@ -21,16 +25,16 @@ lang: 'zh_TW'
 
 ## 設定config
 
-接下來就要設定config了，畢竟原版配置說不上醜，就是不夠優雅，不夠個性對吧，這裡我找到了一個[由reddit用戶aayush-le寫好的配置](https://www.reddit.com/r/GarudaLinux/comments/1ecwz33/enhancing_fastfetch_elegance_a_new_config_update/)，我覺得挺好看的，總之先照著他說的做，我這裡簡單翻譯成中文好了
+接下來就要設定config了，畢竟原版配置說不上醜，就是不夠優雅，不夠個性對吧，這裡我找到了一個[由reddit用戶aayush-le寫好的配置](https://www.reddit.com/r/GarudaLinux/comments/1dcq0dl/making_fastfetch_more_beautiful_linux/)，我覺得挺好看的，總之先照著他說的做，我這裡簡單翻譯成中文好了
 
 1. 先到當前使用者的`.config`資料夾裡面 → `/home/<your_username>/.config`，如果沒找到就自己創一個
 2. 如果在`.config`資料夾裡面沒有看到`fastfetch`資料夾，那就自己創一個 → `mkdir fastfetch`
 3. 透過fastfetch提供的指令創建一個預設的config文件 → `fastfetch --gen-config`
 4. 移除預設的config文件 → `rm fastfetch/config.jsonc`
-5. 下載這個作著提供的config文件 → `wget https://raw.githubusercontent.com/aayushx402/i3-CatDotfiles/main/fastfetch/config.jsonc`
+5. 下載這個作著提供的config文件 → `wget https://raw.githubusercontent.com/xerolinux/xero-layan-git/main/Configs/Home/.config/fastfetch/config.jsonc`
 6. 重新啟動你的終端機
 
-這裡的指令都是for Linux的，當然Windows也有部分兼容這些指令，但像是`wget`windows是沒有的，可以試試`curl`，其實方式百百種啦總之能下載下來到對的位置就OK了！經過這些步驟基本上在終端機輸入`fastfetch`應該已經會有像是這樣的畫面了，借用原作者的圖，接下來就可以再依照自己的喜好客製化囉：
+這裡的指令都是for Linux的，當然Windows也基本兼容這些指令，如果沒有`wget`的話也可以試試`curl`，都沒有的話就自己裝一下，其實方式百百種啦總之能下載下來到對的位置就OK了！經過這些步驟基本上在終端機輸入`fastfetch`應該已經會有像是這樣的畫面了，借用原作者的圖，接下來就可以再依照自己的喜好客製化囉：
 
 ![](1.webp)
 
