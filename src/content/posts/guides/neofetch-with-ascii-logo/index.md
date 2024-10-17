@@ -1,7 +1,7 @@
 ---
 title: 使用自定義圖像作為 Neofetch 的 ASCII Logo
 published: 2024-09-01
-description: '用os的logo太沒個性了，肯定是要換的吧？'
+description: '用 OS 的 logo 太沒個性了，肯定是要換的吧？'
 image: ''
 tags: [Terminal, Neofetch, Customize]
 category: 'Guides'
