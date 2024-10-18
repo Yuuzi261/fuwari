@@ -1,12 +1,12 @@
 ---
 title: 不啟用 Windows 也能開啟深色主題的方法
 published: 2024-08-30
-description: '聽起來是個很奇怪的需求，但我真的遇到了，順便紀錄在這裡'
+description: 聽起來是個很奇怪的需求，但我真的遇到了，順便紀錄在這裡
 image: ''
 tags: [Windows, Dark Mode]
-category: 'Guides'
+category: Guides
 draft: false 
-lang: 'zh_TW'
+lang: zh_TW
 ---
 
 ## 前言

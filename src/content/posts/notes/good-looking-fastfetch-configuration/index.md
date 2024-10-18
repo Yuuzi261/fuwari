@@ -1,12 +1,12 @@
 ---
 title: 分享一個好看 Fastfetch 配置，經過修改後 Windows 也可以使用！
 published: 2024-09-03
-description: '改完之後雖然程式沒有半點進步但感覺整個人都不一樣了（不要瞎掰好嗎'
+description: 改完之後雖然程式沒有半點進步但感覺整個人都不一樣了（不要瞎掰好嗎
 image: ''
-tags: ['Terminal', 'Fastfetch', 'Customize']
-category: 'Notes'
+tags: [CLI Tools, Fetch, Customize]
+category: Notes
 draft: false 
-lang: 'zh_TW'
+lang: zh_TW
 ---
 
 ## 前言

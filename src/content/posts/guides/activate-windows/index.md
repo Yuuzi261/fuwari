@@ -1,12 +1,12 @@
 ---
 title: 永久免費啟用 Windows 的方法，一鍵啟用！
 published: 2024-09-08
-description: '我...我只是要給虛擬機用而已，自己的主機有乖乖買正版喔，微軟把拔高抬貴手'
+description: 我...我只是要給虛擬機用而已，自己的主機有乖乖買正版喔，微軟把拔高抬貴手
 image: ''
-tags: ['Windows']
-category: 'Guides'
+tags: [CLI Tools, Windows]
+category: Guides
 draft: false 
-lang: 'zh_TW'
+lang: zh_TW
 ---
 
 ## 前言

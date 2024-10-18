@@ -1,12 +1,12 @@
 ---
 title: 2024年的現在，安裝 Python 到底有多簡單？
 published: 2024-08-29
-description: '之前寫過一篇新手向的安裝教學，這次就來寫寶寶向的吧，有手就行！'
+description: 之前寫過一篇新手向的安裝教學，這次就來寫寶寶向的吧，有手就行！
 image: ''
 tags: [Python, Installation]
-category: 'Guides'
+category: Guides
 draft: false 
-lang: 'zh_TW'
+lang: zh_TW
 ---
 
 # 方法1：直接從 Microsoft Store 安裝

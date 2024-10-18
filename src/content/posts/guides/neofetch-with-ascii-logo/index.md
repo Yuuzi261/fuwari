@@ -1,12 +1,12 @@
 ---
 title: 使用自定義圖像作為 Neofetch 的 ASCII Logo
 published: 2024-09-01
-description: '用 OS 的 logo 太沒個性了，肯定是要換的吧？'
+description: 用 OS 的 logo 太沒個性了，肯定是要換的吧？
 image: ''
-tags: [Terminal, Neofetch, Customize]
-category: 'Guides'
+tags: [CLI Tools, Fetch, Customize]
+category: Guides
 draft: false 
-lang: 'zh_TW'
+lang: zh_TW
 ---
 
 ## 使用 jp2a 轉換圖片為 ASCII 藝術

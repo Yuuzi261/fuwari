@@ -1,17 +1,17 @@
 ---
 title: 在 WSL2 中安裝 Arch Linux
 published: 2024-10-17
-description: ''
+description: TensorFlow 不支援 Windows + GPU，所以 Linux 啟動，既然要用就要用最香的 Arch Linux！
 image: ''
-tags: ['Arch', 'WSL', 'Installation']
-category: 'Guides'
+tags: [Arch Linux, WSL, Installation]
+category: Guides
 draft: false 
-lang: 'zh_TW'
+lang: zh_TW
 ---
 
 ## 前言
 
-因為 Tensorflow 這傢伙從2.11版本開始不支援 Windows 使用 GPU 了，想要在本地用到我整天風扇轉都不屑轉的4070果然還是得 WSL 啟動，不過為什麼是選擇 Arch Linux 呢？那當然是因為 Arch-chan 很可愛...我是說 Arch Linux 十分的香，你都點進來這個文章了怎麼會想問理由呢？
+因為 TensorFlow 這傢伙從2.11版本開始不支援 Windows 使用 GPU 了，想要在本地用到我整天風扇轉都不屑轉的4070果然還是得 WSL 啟動，不過為什麼是選擇 Arch Linux 呢？那當然是因為 Arch-chan 很可愛...我是說 Arch Linux 十分的香，你都點進來這個文章了怎麼會想問理由呢？
 
 ![](1.jpg)
 鎮樓圖，繪師：[Ravimo](https://www.pixiv.net/users/60562229)
