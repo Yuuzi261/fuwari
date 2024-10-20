@@ -3,7 +3,7 @@ title: 紀錄一下重搞 oh my tmux 的過程
 published: 2024-09-06
 description: 原生 oh my tmux 主題風格真的太強烈了，趁著懶癌不注意來修改一下
 image: ''
-tags: [CLI Tools, Tmux, Customize, Installation]
+tags: [CLI Tools, Tmux, Customization, Installation]
 category: Notes
 draft: false 
 lang: zh_TW
