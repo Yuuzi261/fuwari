@@ -1,6 +1,7 @@
 ---
 title: 分享一個好看 Fastfetch 配置，經過修改後 Windows 也可以使用！
 published: 2024-09-03
+updated: 2024-10-15
 description: 改完之後雖然程式沒有半點進步但感覺整個人都不一樣了（不要瞎掰好嗎
 image: ''
 tags: [CLI Tools, Fetch, Customization]
