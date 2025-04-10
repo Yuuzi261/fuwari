@@ -2,10 +2,10 @@
 title: 紀錄一下重搞 oh my tmux 的過程
 published: 2024-09-06
 description: 原生 oh my tmux 主題風格真的太強烈了，趁著懶癌不注意來修改一下
-image: ''
+image: ""
 tags: [CLI Tools, Tmux, Customization, Installation]
 category: Notes
-draft: false 
+draft: false
 lang: zh_TW
 ---
 
@@ -70,7 +70,7 @@ cp .tmux/.tmux.conf.local .
 
 ### 第二種方法
 
-編輯 `tmux.conf.local` 或 `.tmux.conf.local` 檔案，裡面應該已經幫你寫好了，找到 `set -g mouse on` 這行直接取消註解就OK了，如果沒有就自己加上。
+編輯 `tmux.conf.local` 或 `.tmux.conf.local` 檔案，裡面應該已經幫你寫好了，找到 `set -g mouse on` 這行直接取消註解就 OK 了，如果沒有就自己加上。
 
 當然還有很多實用插件可以自由摸索，選擇自己需要的，我這裡就不多做介紹，畢竟我這次不是不滿意使用體驗，而是不滿意顏值啊！
 
@@ -79,17 +79,17 @@ cp .tmux/.tmux.conf.local .
 終於進入正題了，這裡先列出一些我覺得還不錯看的主題：
 
 - nordtheme
-::github{repo="nordtheme/tmux"}
+  ::github{repo="nordtheme/tmux"}
 - tokyo-night-tmux
-::github{repo="janoamaral/tokyo-night-tmux"}
+  ::github{repo="janoamaral/tokyo-night-tmux"}
 - rose-pine
-::github{repo="rose-pine/tmux"}
+  ::github{repo="rose-pine/tmux"}
 
 這次我安裝的是 `rose-pine`，不是因為我覺得它最好看，只是剛好這個主題對實驗室電腦來說比較沒 bug，然後套了我的 Windows Terminal 主題後視覺上沒有太大影響而採用，以後我應該還是去玩一下 WSL 或是灌個 Arch 來玩玩吧，最近看到很多 Arch rice 的影片有燒到我。
 
 雖然每個主題有些微差異，但不外乎基本支援透過 [TPM](https://github.com/tmux-plugins/tpm) 這個 tmux 插件管理工具來安裝，不過有些主題雖然也是透過 `TPM` 安裝，但會跟 oh my tmux 衝突，要特別注意一下，對我就是在說你 [Catppuccin](https://github.com/catppuccin/tmux)！
 
-### 安裝TPM
+### 安裝 TPM
 
 安裝 TPM 其實也蠻簡單的，第一步先把整個儲存庫 clone 下來：
 
@@ -125,22 +125,25 @@ run '~/.tmux/plugins/tpm/tpm'
 tmux source ~/.tmux.conf
 ```
 
-如果剛好沒有 tmux 在執行也可以直接殺掉 tmux server，很多時候莫名奇妙沒有套用都是重新啟動就好了，重新啟動可以解決99%的問題（X
+如果剛好沒有 tmux 在執行也可以直接殺掉 tmux server，很多時候莫名奇妙沒有套用都是重新啟動就好了，重新啟動可以解決 99%的問題（X
 
 ```bash
 tmux kill-server
 ```
 
-這樣一來就安裝好了，TPM 有3種特殊指令可以用：
+這樣一來就安裝好了，TPM 有 3 種特殊指令可以用：
 
 `prefix` + <kbd>I</kbd>
+
 - 從任何 git 儲存庫安裝新插件
 - 刷新 tmux 環境
 
 `prefix` + <kbd>U</kbd>
+
 - 更新插件
 
 `prefix` + <kbd>alt</kbd> + <kbd>u</kbd>
+
 - 刪除/解除安裝不在插件清單中的插件
 
 ### 透過 TPM 安裝 tmux 主題

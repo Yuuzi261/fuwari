@@ -2,10 +2,10 @@
 title: 透過 Conda 在 Arch Linux 安裝 TensorFlow GPU 支援所需的 CUDA 以及其他依賴套件（其他 Linux 發行版也行）
 published: 2024-10-18
 description: 這我折騰了一整天終於找到穩定又快速的方法了，如果你也對這個很頭痛就快來看看！
-image: ''
+image: ""
 tags: [Arch Linux, TensorFlow, Conda, CLI Tools, WSL, Installation, Python]
 category: Guides
-draft: false 
+draft: false
 lang: zh_TW
 ---
 
@@ -31,10 +31,10 @@ nvidia-smi
 
 ## 安裝套件/環境管理系統 Conda
 
-Conda是廣為人知的套件/環境管理系統，平常有在接觸 Python 的人應該不陌生，我們要透過他來管理不同專案要使用到的套件以及 CUDA、cuDNN等等，方便在不同專案之間快速切換。
+Conda 是廣為人知的套件/環境管理系統，平常有在接觸 Python 的人應該不陌生，我們要透過他來管理不同專案要使用到的套件以及 CUDA、cuDNN 等等，方便在不同專案之間快速切換。
 
 :::note
-我這裡會使用 Miniconda，它比 Anaconda 更輕量，只需要安裝最小需求的套件：[Miniconda文檔](https://docs.anaconda.com/miniconda/)。
+我這裡會使用 Miniconda，它比 Anaconda 更輕量，只需要安裝最小需求的套件：[Miniconda 文檔](https://docs.anaconda.com/miniconda/)。
 :::
 
 因為每個人的硬體以及作業系統不同，所以我這裡以 `Linux x86-64` 的版本為例，其他版本請見官方文檔，其實我下面的指令也是從文檔複製過來的笑死：
@@ -69,14 +69,14 @@ conda config --set auto_activate_base false
 接下就進入重頭戲了，我們必須確定 TensorFlow、CUDA、cuDNN 的版本是相容的，不然就會無法使用 GPU，首先，先確認要安裝的 TensorFlow 版本，所有版本與 CUDA 的對應關係都在 [TensorFlow 文檔](https://www.tensorflow.org/install/source)了，而且中文版已經年久失修，一定要切到英文版的才有比較新的資料，非常的坑，我這裡也列一下比較新的幾個。
 
 | TensorFlow 版本 | Python 版本 | CUDA | cuDNN |
-|--------|------------|------|-----|
-| 2.17.0 | 3.9 - 3.12 | 12.3 | 8.9 |
-| 2.16.1 | 3.9 - 3.12 | 12.3 | 8.9 |
-| 2.15.0 | 3.9 - 3.11 | 12.2 | 8.9 |
-| 2.14.0 | 3.9 - 3.11 | 11.8 | 8.7 |
-| 2.13.0 | 3.8 - 3.11 | 11.8 | 8.6 |
-| 2.12.0 | 3.8 - 3.11 | 11.8 | 8.6 |
-| 2.11.0 | 3.7 - 3.10 | 11.2 | 8.1 |
+| --------------- | ----------- | ---- | ----- |
+| 2.17.0          | 3.9 - 3.12  | 12.3 | 8.9   |
+| 2.16.1          | 3.9 - 3.12  | 12.3 | 8.9   |
+| 2.15.0          | 3.9 - 3.11  | 12.2 | 8.9   |
+| 2.14.0          | 3.9 - 3.11  | 11.8 | 8.7   |
+| 2.13.0          | 3.8 - 3.11  | 11.8 | 8.6   |
+| 2.12.0          | 3.8 - 3.11  | 11.8 | 8.6   |
+| 2.11.0          | 3.7 - 3.10  | 11.2 | 8.1   |
 
 選好版本後就可以開始著手安裝啦！
 

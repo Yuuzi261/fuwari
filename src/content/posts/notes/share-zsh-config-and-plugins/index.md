@@ -2,10 +2,10 @@
 title: 分享 Zsh 的設定檔以及使用的插件
 published: 2024-10-20
 description: 最近剛把 Bash 蛋雕，紀錄並分享一下自己用了什麼插件還有做了些設定
-image: ''
+image: ""
 tags: [CLI Tools, Zsh, Customization]
 category: Notes
-draft: false 
+draft: false
 lang: zh_TW
 ---
 
@@ -19,22 +19,25 @@ lang: zh_TW
 
 至於如何用 Oh My Posh 來美化 Zsh，我想[文檔](https://ohmyposh.dev/docs)已經寫得很清楚了，基本上都是指令貼一貼就搞定，所以我這裡只講一下配置的重點。
 
-安裝完後 Oh My Posh 可能會出現要你把 `/home/{user}/.local/bin` 加到環境變數，這個要特別注意，這行一定要在 Oh My Posh 的 init 指令前面，否則下次進 Zsh 就會回到光溜溜的狀態ww
+安裝完後 Oh My Posh 可能會出現要你把 `/home/{user}/.local/bin` 加到環境變數，這個要特別注意，這行一定要在 Oh My Posh 的 init 指令前面，否則下次進 Zsh 就會回到光溜溜的狀態 ww
 
 這個在前：
+
 ```bash
 export PATH=$PATH:/home/<user>/.local/bin
 ```
 
 這個在後：
+
 ```bash
 eval "$(oh-my-posh init zsh --config <config_json_file_path>)"
 ```
 
 :::tip[WSL 小技巧]
+
 1. [Nerd Fonts](https://www.nerdfonts.com/) 要裝在 Windows 上，不是裝在 WSL 裡。
-2. 本地的C槽就是 `/mnt/c`，D槽就是 `/mnt/d`，以此類推，如果你跟我一樣要直接用放在 Windows 上的主題，路徑要改成這樣。
-:::
+2. 本地的 C 槽就是 `/mnt/c`，D 槽就是 `/mnt/d`，以此類推，如果你跟我一樣要直接用放在 Windows 上的主題，路徑要改成這樣。
+   :::
 
 ## 插件及工具
 

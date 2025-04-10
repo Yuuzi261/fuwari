@@ -2,10 +2,10 @@
 title: Arch 升級軟體時出現 404 錯誤的解決方法
 published: 2024-10-22
 description: 一大早就遇到問題，extra.db 死活更新不了，還好成功解決了紀錄一下方法！
-image: ''
+image: ""
 tags: [Arch Linux, CLI Tools]
 category: Notes
-draft: false 
+draft: false
 lang: zh_TW
 ---
 
@@ -20,6 +20,7 @@ lang: zh_TW
 ```bash
 ➜ sudo pacman -Syu
 ```
+
 ```bash
 :: Synchronizing package databases...
  core is up to date
@@ -71,6 +72,7 @@ error: failed retrieving file 'extra.db' from mirrors.kernel.org : The requested
 ```bash
 sudo pacman -S reflector
 ```
+
 :::
 
 ```bash
