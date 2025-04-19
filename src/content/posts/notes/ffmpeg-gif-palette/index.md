@@ -13,7 +13,7 @@ lang: zh_TW
 
 每次用 FFmpeg 轉換圖片或影片為 GIF 的時候，明明原始圖片或影片品質很高，但經過處理轉出來之後就直接慘掉，不單單是畫質死亡而已，而是多出了一堆不明的噪點或是殘影，但用很多線上的工具卻又可以比較好的轉換，沒道理啊，線上工具都可以了，我大 FFmpeg 哪有做不到的道理，說不定線上工具也是用 FFmpeg 咧！直到最近我才終於知道 FFmpeg 要轉換 GIF 的正確姿勢，原來是少用了調色板～總之就來紀錄一下吧！先上前後對比：
 
-![](1.gif)
+![](https://i.imgur.com/6dMl7Qd.gif)
 
 差異非常明顯（左 - 未使用調色板 / 右 - 使用調色板，[圖源 - KuroTofu :3](https://x.com/Kuro_Tofu/status/1905739431258308845)）
 
@@ -76,7 +76,7 @@ ffmpeg -i input.mp4 -i palette.png -filter_complex "[0:v] fps=15,scale=320:-1:fl
 
 如果你要對影片/GIF進行一些複雜的處理，而且處理的工具只能處理圖片，比如 [Rembg](https://github.com/danielgatis/rembg) 等工具，那我們可以透過將影片/GIF一張一張拆解成圖片，全部處理過後再轉回影片/GIF！由於 GIF 比較難搞，接下來我就以這張 GIF 為例來說明：
 
-![](2.gif)
+![](https://i.imgur.com/kN7rKVd.gif)
 [🔗圖源 - KuroTofu :3](https://x.com/Kuro_Tofu/status/1909354462994731029)
 
 ### 確認原始的影片/GIF影格率
@@ -168,6 +168,6 @@ ffmpeg -framerate 25 -i processed_frames/frame_%04d.png -i palette.png -filter_c
 
 這裡同樣因為我做了去背的操作，所以我在調色板加上了 `alpha_threshold=128`，將透明度資訊套用到調色板上（Alpha 值 < 128 的像素被視為完全透明），下面展示成品：
 
-![](3.gif)
+![](https://i.imgur.com/70ZNtKu.gif)
 
 除了右下角去背有點瑕疵以及愛心不見以外效果不錯，不過畢竟這篇文章不是來教去背的所以這不是重點啦～只是隨便找個操作來演示一下，總之這就是完整的流程了，應該足夠詳細了吧！希望能幫助到被 FFmpeg 指令搞到頭昏眼花的人～
