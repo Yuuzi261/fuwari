@@ -3,12 +3,14 @@
 ### Popular Repositories
 
 ::github{repo="Yuuzi261/Tweetcord"}
+::github{repo="Yuuzi261/EchordMind"}
 ::github{repo="Yuuzi261/AutoFx"}
 
 ### Contributed Repositories
 
 ::github{repo="maxhu08/mtab"}
 ::github{repo="FuseFairy/HBR-AxleTool-vue"}
+::github{repo="FuseFairy/github-profile-repo-analytics"}
 
 > ### Sources of images used in this site
 >
