@@ -36,14 +36,14 @@ export const siteConfig: SiteConfig = {
 		//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
 		//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
 		// }
-    {
-      src: "/favicon/favicon-nekoya-32.png",
-      sizes: "32x32",
-    },
-    {
-      src: "/favicon/favicon-nekoya-128.png",
-      sizes: "128x128",
-    },
+		{
+			src: "/favicon/favicon-nekoya-32.png",
+			sizes: "32x32",
+		},
+		{
+			src: "/favicon/favicon-nekoya-128.png",
+			sizes: "128x128",
+		},
 	],
 };
 
@@ -72,16 +72,16 @@ export const profileConfig: ProfileConfig = {
 			// `pnpm add @iconify-json/<icon-set-name>`
 			url: "https://x.com/Yuuzi_261",
 		},
-    {
-      name: "Discord",
-      icon: "fa6-brands:discord",
-      url: "https://discord.com/users/431016551261405195",
-    },
-    {
-      name: "GitHub",
-      icon: "fa6-brands:github",
-      url: "https://github.com/Yuuzi261",
-    },
+		{
+			name: "Discord",
+			icon: "fa6-brands:discord",
+			url: "https://discord.com/users/431016551261405195",
+		},
+		{
+			name: "GitHub",
+			icon: "fa6-brands:github",
+			url: "https://github.com/Yuuzi261",
+		},
 	],
 };
 
