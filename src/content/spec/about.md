@@ -4,6 +4,7 @@
 
 ::github{repo="Yuuzi261/Tweetcord"}
 ::github{repo="Yuuzi261/BA-Character-Rating"}
+::github{repo="Yuuzi261/BA-Gift-Planner"}
 ::github{repo="Yuuzi261/AutoFx"}
 ::github{repo="Yuuzi261/EchordMind"}
 
