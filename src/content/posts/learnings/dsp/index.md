@@ -158,6 +158,46 @@ $$
 
 ### 離散時間的週期性 (Periodicity in Discrete Time)
 
+假設這裡有兩個訊號：$x$ 和 $x_1$
+
+$$
+\left\{ 
+\begin{array}{ll}
+    x &= \cos(\omega t) \\
+    x_1 &= \cos((\omega + {\color{#3071c4}\omega_s})t)
+\end{array}
+\right.
+$$
+
+很明顯這是兩個不一樣頻率的訊號，但如果我們對它們進行採樣，會發現一個很有趣的現象：
+
+$$
+\begin{aligned}
+x_1(t) &= \cos((\omega+\omega_s)t) \\
+&\downarrow t = {\color{#3071c4}nT} \\
+x_1[n] &= \cos((\omega+\omega_s){\color{#3071c4}nT}) \\
+&\because \omega_s = \frac{2\pi}{T} \\
+\therefore x_1[n] &= \cos((\omega+\frac{2\pi}{T})\cdot nT) \\
+&= cos(\omega nT+\frac{2\pi}{\cancel{T}}\cdot n\cancel{T}) \\
+&= cos(\omega nT+{\underbrace{2\pi n}_{\color{#e53935}{2\pi\text{ 的整數倍，不影響值}}}}) \\
+&= cos(\omega nT)
+\end{aligned}
+$$
+
+可以觀察到雖然 $x$ 跟 $x_1$ 不同，但取樣後都是 $cos(\omega nT)$，$\therefore x[n] = x_1[n]$。
+
+:::note
+這裡再假設一個 $x_2(t) = \cos((-\omega+{\color{#3071c4}\omega_s})t)$，取樣後會得到 $x_2[n] = \cos(-\omega nT)$，但因為 cosine 是偶函數，所以 $x_2[n] = \cos(-\omega nT) = \cos(\omega nT) = x[n]$
+:::
+
+我們可以得到一個結論，在離散的世界裡，很多不同頻率的連續波，採樣後居然會看起來一模一樣，這個就是所謂的 **「混疊現象」(Aliasing Phenomenon)**。
+
+![](w2_1.png)
+
+<small>🔗圖片來源：https://www.ni.com/docs/zh-TW/bundle/labwindows-cvi/page/advancedanalysisconcepts/aliasing.html</small>
+
+## 奈奎斯特取樣定理 (Nyquist-Shannon Sampling Theorem)
+
 > _施工中..._
 
 :::note
