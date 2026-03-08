@@ -112,7 +112,7 @@ $$
 - 極座標表示：$A=|A| e^{j \phi_1}$，$\alpha= |\alpha| e^{j \phi_2}$
 - 因此 $x[n]=A \alpha^n= |A| |\alpha|^n e^{j(n \phi_2 + \phi_1)}$
 
-> _以後想到再補圖_
+_✍️TODO 以後想到再補圖_
 
 # Week2
 
@@ -196,9 +196,66 @@ $$
 
 <small>🔗圖片來源：https://www.ni.com/docs/zh-TW/bundle/labwindows-cvi/page/advancedanalysisconcepts/aliasing.html</small>
 
-## 奈奎斯特取樣定理 (Nyquist-Shannon Sampling Theorem)
+## 奈奎斯特-香農取樣定理 (Nyquist-Shannon Sampling Theorem)
 
-> _施工中..._
+我們現在知道如果取樣頻率不夠高，就會在這種週期性的訊號上產生混疊現象，那如果不想要產生混疊現象的話，具體來說需要多高的取樣頻率呢？**奈奎斯特-香農取樣定理**給出了答案，並定義了所謂的**奈奎斯特頻率 (Nyquist Frequency)**，又或者稱作**奈奎斯特極限 (Nyquist Limit)**。
+
+- **奈奎斯特極限：** 能被系統唯一表示的最高頻率為 $\frac{\omega_s}{2}$
+- **發生混疊的條件：** 如果輸入訊號的最高頻率 $\omega_N > \frac{\omega_s}{2}$，就會發生混疊
+- **取樣定理：** 假設一個連續時間訊號 $x(t)$，它是一個**頻帶受限訊號 (band-limited signal)**，最高頻率為 $\omega_N$，寫成數學式：$X(j\omega) = 0 \text{ for } |\omega| \ge \omega_N$（所有比 $\omega_N$ 大的頻率都不存在 $\rightarrow X(j\omega) = 0$）。如果我們以 $\omega_s \ge 2\omega_N$ 的頻率對其進行取樣，那麼這個連續訊號 $x(t)$ 就可以 **唯一地 (uniquely)** 被它的離散取樣點 $x[n]$ 所決定。換句話說，只要取樣正確，就能拿這些離散的點拼湊回原本的 $x(t)$
+
+:::tip[頻帶受限訊號 (Band-Limited Signal)]
+指其頻譜能量集中在有限的頻率範圍內的訊號，簡單來說，它的頻率是有上限的 ($\omega_{max} < \infty$)。
+:::
+
+#### 完美還原訊號的數學條件
+
+$$
+\begin{aligned}
+&\text{if } \overbrace{\omega_s}^{\color{#3071c4}\text{取樣頻率}} \ge \overbrace{2\omega_N}^{\color{#e53935}\text{最高訊號頻率}} \\
+&\text{i.e. , Nyquist Limit } \frac{\omega_s}{2} \\
+&\omega_N \le \frac{\omega_s}{2} \color{#3071c4}{\Rightarrow \omega_s \ge 2\omega_N} \\
+&\omega_s = \frac{2\pi}{T} \Rightarrow T = \frac{2\pi}{\omega_s}
+\end{aligned}
+$$
+
+## 反混疊濾波器（Anti-aliasing Filter）
+
+_✍️TODO 以後補_
+
+## 範例與練習
+
+### Ex.1
+
+Determine which input signals to a digital filter or DSP system will be aliased by the given period $Т$?
+
+1. $x(t) = 2\cos(10t)\text{ , T = 0.1s}$
+2. $x(t) = 8\cos(15t)\text{ , T = 0.2s}$
+
+:::note[Ans]
+1. $\omega_s = \frac{2\pi}{T} = \frac{2\pi}{0.1} = 20\pi$ <br>
+    Nyquist Frequency: $\frac{\omega_s}{2} = 10\pi\approx 31.4$ <br>
+    $\therefore \omega_N = 10 < \frac{\omega_s}{2}$，沒有混疊
+2. 同理，$\frac{\omega_s}{2} = \frac{\frac{2\pi}{0.2}}{2} = 5\pi\approx 15.7$ <br>
+    $\therefore \omega_N = 15 < \frac{\omega_s}{2}$，沒有混疊
+:::
+
+### Ex.2
+
+Determine if the following signals will be aliased. If the signal is aliased into having the same sample value as a lower frequency sinusoidal signal, determine the lower sinusoidal signal.
+
+1. $x(t) = 7\cos(25t)\text{ , T = 0.1s}$
+2. $x(t) = 3\cos(160t)\text{ , T = 0.02s}$
+
+:::note[Ans]
+1. $\frac{\omega_s}{2} = \frac{\frac{2\pi}{0.1}}{2} = 10\pi\approx 31.4$ <br>
+    $\therefore \omega_N = 25 < \frac{\omega_s}{2}$，沒有混疊
+2. $\frac{\omega_s}{2} = \frac{\frac{2\pi}{0.02}}{2} = 50\pi\approx 157$ <br>
+    $\therefore \omega_N = 160 > \frac{\omega_s}{2}$，有混疊 <br>
+    _✍️TODO 發生混疊後的低頻波計算之後補_
+:::
+
+_未完待續..._
 
 :::note
 部份圖片來源自：陳榮銘 教授 數位訊號處理課程投影片
