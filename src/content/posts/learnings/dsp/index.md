@@ -116,7 +116,44 @@ $$
 
 # Week2
 
-> _施工中_
+## 訊號取樣的影響 (Effect of Signal Sampling)
+
+### 基本定義
+
+假設一個連續時間訊號 $x(t) = \cos(\omega t)$
+- $\omega$：角頻率 (Radian Frequency)，單位：rad/s（徑度/秒）
+- $t$：連續時間，單位：sec（秒）
+
+:::note
+複習一下高中內容：在圓周運動或簡諧運動的數學推導中，如果使用「圈數」，公式裡會不斷出現 $2 \pi$ 這個係數，顯得累贅。為了讓方程式更簡潔，我們直接把 $2 \pi$ 乘進去，定義出角頻率（以 $\omega$ 表示）
+:::
+
+### 取樣過程（Sampling Process）
+
+1. 每隔 $T$ 秒取樣一次，$T$: 取樣週期 (Sampling Period)
+    $$
+    {\color{#3071c4}t：}0, T, 2T, 3T, \ldots \\
+    t = nT \\
+    n = 0, 1, 2, 3, \ldots
+    $$
+
+2. 離散化
+    $$
+    x(t) = \cos(\omega {\color{#3071c4}t}) \\
+    \downarrow {\color{#3071c4}t = nT} \\
+    x({\color{#3071c4}nT}) = \cos(\omega {\color{#3071c4}nT}) \\
+    \Downarrow \\
+    x[n] = \cos(\omega nT)
+    $$
+
+3. 取樣頻率轉換
+    取樣頻率：$f_s = \frac{1}{T}$ Hz，取樣角頻率為 $\omega_s = \frac{2 \pi}{T}$ rad/s
+    :::tip
+    $\omega = 2 \pi f \xrightarrow{f = \frac{1}{T}} \omega = \frac{2 \pi}{T}$
+    :::
+
+
+> _施工中..._
 
 :::note
 部份圖片來源自：陳榮銘 教授 數位訊號處理課程投影片
