@@ -55,9 +55,9 @@ $$
     $$
     δ[n] = 
     \left\{ 
-    \begin{array}{c}
-        1, n = 0 \\
-        0, n \not= 0
+    \begin{array}{ll}
+        1, & n = 0 \\
+        0, & n \neq 0
     \end{array}
     \right.
     $$
@@ -71,9 +71,9 @@ $$
     $$
     u[n] = 
     \left\{ 
-    \begin{array}{c}
-        1, n \ge 0 \\
-        0, n \lt 0
+    \begin{array}{ll}
+        1, & n \ge 0 \\
+        0, & n < 0
     \end{array}
     \right.
     $$
@@ -82,7 +82,7 @@ $$
 
 3. **指數序列 (Exponential Sequence)**
 
-    形式為 $x[n] = A \cdot α^n$，$A$ 與 $α$ 可為實數或複數
+    形式為 $x[n] = A \cdot \alpha^n$，$A$ 與 $\alpha$ 可為實數或複數
 
 ## 重要數學性質與表示法
 
@@ -95,22 +95,22 @@ $$
 寫成一般式（$a_k$ 即為 $x[k]$ 的值）：
 
 $$
-x[n]=\sum\limits_{−\infty}^\infty{​{\color{#3071c4}a_k} \cdot δ[n−k]}=\sum\limits_{−\infty}^\infty{{\color{#3071c4}​x[k]} \cdot δ[n−k]}
+x[n]=\sum_{k=-\infty}^\infty {{\color{#3071c4} a_k} \cdot \delta[n-k]}=\sum_{k=-\infty}^\infty {{\color{#3071c4} x[k]} \cdot \delta[n-k]}
 $$
 ![](w1_5.svg)
 
-**$u[n]$ 與 $δ[n]$ 的關係**
+**$u[n]$ 與 $\delta[n]$ 的關係**
 
-- **累加關係：** $u[n]=\sum\limits_{k=0}^\infty{​δ[n−k]}$ 或 $u[n]=\sum\limits_{k=-\infty}^n{​δ[k]}$
-- **差分關係：** $δ[n]=u[n]−u[n−1]$
+- **累加關係：** $u[n]=\sum_{k=0}^\infty \delta[n-k]$ 或 $u[n]=\sum_{k=-\infty}^n \delta[k]$
+- **差分關係：** $\delta[n]=u[n]-u[n-1]$
 
 ### 複數平面與歐拉公式 (Euler's Formula)
 
 在處理複數指數訊號時常用到：
 
-- 歐拉公式：$e_{j \phi}=cos \phi+jsin \phi$
-- 極座標表示：$A=\vert A \vert e^{j \phi_1}​，\alpha= \vert \alpha \vert e^{j \phi_2}​ $
-- 因此 $x[n]=A \alpha_n= \vert A \vert {\vert α \vert}^ne^{j(n \phi_2​+ \phi_1​)}$
+- 歐拉公式：$e^{j \phi}=\cos \phi+j\sin \phi$
+- 極座標表示：$A=|A| e^{j \phi_1}$，$\alpha= |\alpha| e^{j \phi_2}$
+- 因此 $x[n]=A \alpha^n= |A| |\alpha|^n e^{j(n \phi_2 + \phi_1)}$
 
 > _以後想到再補圖_
 
@@ -132,18 +132,22 @@ $$
 
 1. 每隔 $T$ 秒取樣一次，$T$: 取樣週期 (Sampling Period)
     $$
-    {\color{#3071c4}t：}0, T, 2T, 3T, \ldots \\
-    t = nT \\
-    n = 0, 1, 2, 3, \ldots
+    \begin{aligned}
+    {\text{時間 } t\text{：}} & 0, T, 2T, 3T, \ldots \\
+    t &= nT \\
+    n &= 0, 1, 2, 3, \ldots
+    \end{aligned}
     $$
 
 2. 離散化
     $$
-    x(t) = \cos(\omega {\color{#3071c4}t}) \\
-    \downarrow {\color{#3071c4}t = nT} \\
-    x({\color{#3071c4}nT}) = \cos(\omega {\color{#3071c4}nT}) \\
-    \Downarrow \\
-    x[n] = \cos(\omega nT)
+    \begin{aligned}
+    x(t) &= \cos(\omega {\color{#3071c4}t}) \\
+    &\downarrow {\color{#3071c4}t = nT} \\
+    x({\color{#3071c4}nT}) &= \cos(\omega {\color{#3071c4}nT}) \\
+    &\Downarrow \\
+    x[n] &= \cos(\omega nT)
+    \end{aligned}
     $$
 
 3. 取樣頻率轉換
@@ -152,6 +156,7 @@ $$
     $\omega = 2 \pi f \xrightarrow{f = \frac{1}{T}} \omega = \frac{2 \pi}{T}$
     :::
 
+### 離散時間的週期性 (Periodicity in Discrete Time)
 
 > _施工中..._
 
