@@ -13,7 +13,7 @@ lang: zh_TW
 
 最近突然覺得自己常常耍廢摸魚得過且過感覺未來會暴死，經過深刻的反省之後決定把這學期上課的內容整理成筆記放到 blog 裡，希望這個系列能夠安穩落地。因為目前才剛開始教所以分類會有些隨便，以後滾動調整吧～
 
-# Week1
+# 緒論
 
 ## 關於訊號
 
@@ -114,9 +114,9 @@ $$
 
 _✍️TODO 以後想到再補圖_
 
-# Week2
+# 訊號取樣的影響
 
-## 訊號取樣的影響 (Effect of Signal Sampling)
+## 取樣與混疊 (Sampling and Aliasing)
 
 ### 基本定義
 
@@ -227,12 +227,12 @@ _✍️TODO 以後補_
 
 ### Ex.1
 
-Determine which input signals to a digital filter or DSP system will be aliased by the given period $Т$?
+Determine which input signals to a digital filter or DSP system will be aliased by the given period $\text{Т}$?
 
 1. $x(t) = 2\cos(10t)\text{ , T = 0.1s}$
 2. $x(t) = 8\cos(15t)\text{ , T = 0.2s}$
 
-:::note[Ans]
+:::note[ANS]
 1. $\omega_s = \frac{2\pi}{T} = \frac{2\pi}{0.1} = 20\pi$ <br>
     Nyquist Frequency: $\frac{\omega_s}{2} = 10\pi\approx 31.4$ <br>
     $\therefore \omega_N = 10 < \frac{\omega_s}{2}$，沒有混疊
@@ -247,13 +247,54 @@ Determine if the following signals will be aliased. If the signal is aliased int
 1. $x(t) = 7\cos(25t)\text{ , T = 0.1s}$
 2. $x(t) = 3\cos(160t)\text{ , T = 0.02s}$
 
-:::note[Ans]
+:::note[ANS]
 1. $\frac{\omega_s}{2} = \frac{\frac{2\pi}{0.1}}{2} = 10\pi\approx 31.4$ <br>
     $\therefore \omega_N = 25 < \frac{\omega_s}{2}$，沒有混疊
 2. $\frac{\omega_s}{2} = \frac{\frac{2\pi}{0.02}}{2} = 50\pi\approx 157$ <br>
     $\therefore \omega_N = 160 > \frac{\omega_s}{2}$，有混疊 <br>
     _✍️TODO 發生混疊後的低頻波計算之後補_
 :::
+
+# 數位濾波器規格
+
+## 基礎概念與公式
+
+在介紹數位濾波器之前，要先了解一下下面這三個東西，它們是衡量一個濾波器好不好用、有沒有效的核心概念：
+
+- **增益 (Gain)**
+    - $Gain = \frac{\text{輸入訊號的振幅}}{\text{輸出訊號的增幅}}$
+    - 如果 $Gain = 1$，代表訊號無損通過。在濾波器中，這就是我們希望保留訊號的區域，稱為 **通帶 (Pass Band)**
+    - 如果 $Gain$ 趨近於 $0$，代表訊號被擋下或大幅削弱。這就是我們希望濾除雜訊的區域，稱為 **阻帶 (Stop Band)**
+- **損失 (Loss)**
+    - 增益的倒數，即 $Loss = {(Gain)}^{-1}$，本質上是一樣的東西，只是換個角度描述
+- **分貝 (dB)：** 現實世界的訊號強弱差異極大，如果我們在定義濾波器規格的時候只使用倍數來表示，數值會變得極端並且難以繪圖，比如 $\text{通帶}:\text{阻帶} = 1 : 10^{-6}$。為了閱讀和計算的方便性，分貝這個單位就出現了，它利用對數的性質將巨大的倍數差異壓縮成好處理的數字
+    - 分貝轉換公式：$Gain_{\color{#3071c4}{dB}} = 20\cdot\log_{\color{#e53935}{10}}(Gain)$
+    - 無變化時（$1$ 倍）：$Gain = 1$，$20\cdot\log_{10}(1) = 0\text{ dB}$，因此 $0\text{ dB}$ 在圖表中常常被用來代表訊號的基準線
+    - 訊號放大時（假設 $2$ 倍）：$20\cdot\log_{10}(2) \approx 6\text{ dB}$
+    - 訊號衰減時（假設 $10^{-4}$ 倍）：$20\cdot\log_{10}(10^{-4}) = -80\text{ dB}$
+
+:::tip[REMARK]
+以分貝作為單位的時候，增益和損失的關係變得更加簡單：
+$$
+\begin{aligned}
+& \because\cancel{20}\cdot\log_{10}(Loss) = \cancel{20}\cdot\log_{10}((gain)^{-1}) \\
+& \therefore Loss = -Gain
+\end{aligned}
+$$
+:::
+
+## 濾波器與規格參數
+
+頻率響應的圖表主要由通帶 (Pass Band)、阻帶 (Stop Band) 與 過渡帶 (Transition Band) 組成。
+
+- **增益規格（Gain spec.）：**
+    - $g_{pmax}$​：通帶內允許的最大增益
+    - $g_{pmin}$​：通帶內允許的最小增益
+    - $g_{smax}​$：阻帶內允許的最大增益
+- **頻率規格（Frequency spec.）：**
+    - $\omega_{p}$​：通帶內的最高頻率
+    - $\omega_{s}$​：阻帶內的最低頻率
+    - $\omega_{f}$​：摺疊頻率，也就是奈奎斯特頻率，取樣頻率的一半 $\frac{\omega_{sampling}}{2}$
 
 _未完待續..._
 
