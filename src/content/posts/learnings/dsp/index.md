@@ -252,7 +252,9 @@ Determine if the following signals will be aliased. If the signal is aliased int
     $\therefore \omega_N = 25 < \frac{\omega_s}{2}$，沒有混疊
 2. $\frac{\omega_s}{2} = \frac{\frac{2\pi}{0.02}}{2} = 50\pi\approx 157$ <br>
     $\therefore \omega_N = 160 > \frac{\omega_s}{2}$，有混疊 <br>
-    _✍️TODO 發生混疊後的低頻波計算之後補_
+    由於[混疊高頻摺疊至低頻的現象](#離散時間的週期性-periodicity-in-discrete-time)，$-\omega_1 + \omega_s = 160$ <br>
+    又 $\omega_s = 100\pi \Rightarrow \omega_1 = 100\pi - 160$ <br>
+    $\therefore x_1(t) = 3\cos((100\pi - 160)t) \approx 3\cos(154.2t)$
 :::
 
 # 數位濾波器規格
