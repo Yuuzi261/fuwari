@@ -285,6 +285,16 @@ $$
 $$
 :::
 
+#### 奈奎斯特頻率 / 摺疊頻率（Nyquist / Folding frequency）
+
+$$
+\begin{aligned}
+\frac{\omega_s}{2} &= \frac{\cancel{2}\pi \cdot f_s}{\cancel{2}} \\
+\because T &= \frac{1}{f_s}, \quad T: \text{Sampling Period} \\
+\therefore \frac{\omega_s}{2} &= \pi \cdot \frac{1}{T} = \frac{\pi}{T}
+\end{aligned}
+$$
+
 ## 濾波器與規格參數
 
 頻率響應的圖表主要由通帶 (Pass Band)、阻帶 (Stop Band) 與 過渡帶 (Transition Band) 組成。
@@ -353,6 +363,33 @@ $$
     2. 多通道通訊系統中的訊號對齊
 
 ## 範例與練習
+
+### Ex.1
+
+Draw the graphical specification for a digital highpass filter out to the folding frequency in rad/s that will not change the gain above 500 rad/s by more than ±3 dB, while reducing the gain below 200 rad/s by more than 40 dB.
+The sampling time T = 0.001 s.
+
+:::note[ANS]
+1. 先確定 x 軸的盡頭，也就是 $\omega_f$ 的部分，由於取樣時間 $T = 0.001\text{s}$ </br>
+    $\because\text{Nyquist Frequency} = \frac{\pi}{T}$ [💡為什麼？](#奈奎斯特頻率--摺疊頻率nyquist--folding-frequency)</br>
+    $\therefore \omega_f = \frac{\pi}{0.001} = 1000\pi$
+2. 畫出阻帶，題目說 200 rad/s 以下增益要衰減 40 dB，因此阻帶容許最大增益為 -40 dB，即 $g_{smax} = -40\text{ db}$
+3. 畫出通帶，題目說 500 rad/s 以上增益改變不能超過 ±3 dB，以無損增益 0 dB 為基準，可得知允許的範圍最高 $g_{pmax} = 3\text{ dB}$，最低 $g_{pmin} = -3\text{ dB}$
+
+規格圖如下所示：
+![](w3_5_1.svg)
+:::
+
+### Ex.2
+
+Draw the graphical specification for a bandstop digital filter out to its folding frequency that will reduce the gain between 1,000 rad/s and 5,000 rad/s by more than 60 dB, but will not reduce the gain above 10,000 rad/s or below 150 rad/s by more than 3 dB. The sampling rate is 10,000 Hz.
+
+:::note[ANS]
+$\text{Nyquist Frequency} = \frac{\omega_s}{2} = \frac{\cancel{2}\pi\cdot f_s}{\cancel{2}} = 10000\pi$ </br>
+後面跟上一題類似故省略 </br>
+規格圖如下所示：
+![](w3_5_2.svg)
+:::
 
 _未完待續..._
 
