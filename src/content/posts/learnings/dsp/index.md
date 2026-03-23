@@ -392,6 +392,50 @@ $\text{Nyquist Frequency} = \frac{\omega_s}{2} = \frac{\cancel{2}\pi\cdot f_s}{\
 ![](w3_5_2.svg)
 :::
 
+# Z 轉換
+
+取樣並獲得了離散的數據後，我們通常想要對它進行一些處理，例如我們上一個主題講到的濾波器，可能用來去除雜訊、增強特定頻率等。但是在時域進行分析並不容易，因此我們會希望對訊號進行轉換，並在「頻域」來分析離散系統。在連續的世界裡，我們有拉普拉斯轉換 (Laplace Transform)，而離散世界中的拉普拉斯轉換就是 Z 轉換 (Z-Transform)。
+
+![](w4_1.png)
+
+:::tip[如果在時域上計算輸出會怎麼樣？- 比較時域與頻域]
+![](w4_2.svg)
+
+- 時域 (Time Domain)：
+$ y(t) = \underbrace{x(t) * h(t)}_{convolution} = \int_{-\infty}^\infty x(\tau)h(t-\tau)dz$
+- 頻域 (Frequency Domain)：
+$ Y(\omega) = X(\omega)\cdot H(\omega)$
+
+可以觀察到，工程師喜歡轉到頻域處理問題，因為這會讓在時域很複雜的卷積運算，轉成在頻域簡單的乘法運算。
+:::
+
+:::note[Ex. 訊號取樣]
+將連續時間訊號 $f(t)$ 轉換為離散時間訊號 $f[n]$：
+$$
+\begin{aligned}
+f(t) &= \cos(\omega{\color{#3071c4}\cdot} t) \\
+&\quad {\color{#3071c4}let}\downarrow{\color{#3071c4}t=n\cdot t}{\color{#e53935}\text{ <Sampling>}} \\
+f[n] &= \cos(\omega{\color{#3071c4}\cdot n\cdot t}) = \cos(\omega T\cdot n) \\
+&\quad {\color{#3071c4}let}\downarrow{\color{#3071c4}\Omega=\omega T} \\
+&= \cos({\color{#3071c4}\Omega}n)
+\end{aligned}
+$$
+如果不定義這個 $\Omega$，每次寫訊號處理的公式都要帶著 $\omega T$，太臃腫了。另外，這個 $\Omega$ 又被稱為 **離散角頻率** 或 **正規化角頻率**，單位為 rad。
+:::
+
+## Z 轉換定義
+
+將離散訊號 $f[n]$ 進行 Z 轉換得到 $F(z)$：
+
+$$
+\begin{aligned}
+f[n] & \xrightarrow{\text{z-trf}} F(z) \\
+F(z) &= \sum\limits_{n=-\infty}^{\infty}f[n]\cdot z^{-n}
+\end{aligned}
+$$
+
+若訊號是從 $n = 0$ 開始，則公式可寫為 $F(z) = \sum\limits_{n=0}^{\infty}f[n]\cdot z^{-n}$
+
 _未完待續..._
 
 :::note
