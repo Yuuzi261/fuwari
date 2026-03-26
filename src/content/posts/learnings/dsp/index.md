@@ -14,6 +14,8 @@ lang: zh_TW
 
 最近突然覺得自己常常耍廢摸魚得過且過感覺未來會暴死，經過深刻的反省之後決定把這學期上課的內容整理成筆記放到 blog 裡，希望這個系列能夠安穩落地。因為目前才剛開始教所以分類會有些隨便，以後滾動調整吧～
 
+---
+
 # 緒論
 
 ## 關於訊號
@@ -114,6 +116,8 @@ $$
 - 因此 $x[n]=A \alpha^n= |A| |\alpha|^n e^{j(n \phi_2 + \phi_1)}$
 
 _✍️TODO 以後想到再補圖_
+
+---
 
 # 訊號取樣的影響
 
@@ -258,6 +262,8 @@ Determine if the following signals will be aliased. If the signal is aliased int
     $\therefore x_1(t) = 3\cos((100\pi - 160)t) \approx 3\cos(154.2t)$
 :::
 
+---
+
 # 數位濾波器規格
 
 ## 基礎概念與公式
@@ -391,6 +397,8 @@ $\text{Nyquist Frequency} = \frac{\omega_s}{2} = \frac{\cancel{2}\pi\cdot f_s}{\
 規格圖如下所示：
 ![](w3_5_2.svg)
 :::
+
+---
 
 # Z 轉換
 
