@@ -394,23 +394,28 @@ $\text{Nyquist Frequency} = \frac{\omega_s}{2} = \frac{\cancel{2}\pi\cdot f_s}{\
 
 # Z 轉換
 
-取樣並獲得了離散的數據後，我們通常想要對它進行一些處理，例如我們上一個主題講到的濾波器，可能用來去除雜訊、增強特定頻率等。但是在時域進行分析並不容易，因此我們會希望對訊號進行轉換，並在「頻域」來分析離散系統。在連續的世界裡，我們有拉普拉斯轉換 (Laplace Transform)，而離散世界中的拉普拉斯轉換就是 Z 轉換 (Z-Transform)。
+取樣並獲得了離散的數據後，我們通常想要對它進行一些處理，例如我們上一個主題講到的濾波器，用來去除雜訊或增強特定頻率。但在時域進行分析非常困難，因此我們會希望對訊號進行轉換，並在「頻域」來分析離散系統。
+
+在連續系統中，我們使用拉普拉斯轉換 (Laplace Transform)；而在離散系統中，對應的工具就是 **Z 轉換 (Z-Transform)**。
 
 ![](w4_1.png)
 
-:::tip[如果在時域上計算輸出會怎麼樣？- 比較時域與頻域]
+## 為什麼要轉到頻域？
+
+工程師偏好在頻域處理問題，最主要的原因是運算邏輯的簡化：在時域極為複雜的「卷積」運算，轉到頻域後會變成簡單的「乘法」。
+
 ![](w4_2.svg)
 
-- 時域 (Time Domain)：
-$ y(t) = \underbrace{x(t) * h(t)}_{convolution} = \int_{-\infty}^\infty x(\tau)h(t-\tau)dz$
-- 頻域 (Frequency Domain)：
-$ Y(\omega) = X(\omega)\cdot H(\omega)$
+| 特性 | 時域 (Time Domain) | 頻域 (Frequency Domain) |
+| :--- | :--- | :--- |
+| **運算邏輯** | 卷積 (Convolution) $*$ | 乘法 (Multiplication) $\cdot$ |
+| **連續訊號** | $y(t) = x(t) * h(t)$ | $Y(s) = X(s) \cdot H(s)$ |
+| **離散訊號** | $y[n] = x[n] * h[n]$ | $Y(z) = X(z) \cdot H(z)$ |
 
-可以觀察到，工程師喜歡轉到頻域處理問題，因為這會讓在時域很複雜的卷積運算，轉成在頻域簡單的乘法運算。
-:::
+### 正規化角頻率 (Normalized Angular Frequency)
 
-:::note[Ex. 訊號取樣]
-將連續時間訊號 $f(t)$ 轉換為離散時間訊號 $f[n]$：
+在處理離散訊號時，為了避免公式裡一直帶著取樣週期 $T$ 而顯得臃腫，我們通常會定義一個新的變數：
+
 $$
 \begin{aligned}
 f(t) &= \cos(\omega{\color{#3071c4}\cdot} t) \\
@@ -420,52 +425,41 @@ f[n] &= \cos(\omega{\color{#3071c4}\cdot n\cdot t}) = \cos(\omega T\cdot n) \\
 &= \cos({\color{#3071c4}\Omega}n)
 \end{aligned}
 $$
-如果不定義這個 $\Omega$，每次寫訊號處理的公式都要帶著 $\omega T$，太臃腫了。另外，這個 $\Omega$ 又被稱為 **離散角頻率** 或 **正規化角頻率**，單位為 rad。
-:::
+
+這裡的 $\Omega = \omega T$ 稱為 **離散角頻率** 或 **正規化角頻率**，單位為 rad。
 
 ## Z 轉換定義
 
-將離散訊號 $f[n]$ 進行 Z 轉換得到 $F(z)$：
+將離散訊號 $f[n]$ 進行 Z 轉換得到 $F(z)$ 的一般式如下：
+
+$$
+F(z) = \sum\limits_{n=-\infty}^{\infty}f[n]\cdot z^{-n}
+$$
+
+若訊號具備因果性（即從 $n = 0$ 開始），則公式縮減為：
+$$F(z) = \sum\limits_{n=0}^{\infty}f[n]\cdot z^{-n}$$
+
+## 基礎訊號轉換範例
+
+### 1. 單位樣本/脈衝訊號 (Unit Impulse)
+
+根據定義，$\delta[n]$ 只在 $n=0$ 時有值，其餘皆為 0。
 
 $$
 \begin{aligned}
-f[n] & \xrightarrow{\text{z-trf}} F(z) \\
-F(z) &= \sum\limits_{n=-\infty}^{\infty}f[n]\cdot z^{-n}
+z(\delta[n]) &= \sum\limits_{n=-\infty}^{\infty}\delta[n]\cdot z^{{\color{#e53935}-n}} \\
+&= \delta[0]\cdot z^{{\color{#e53935}-}0} = 1\cdot 1 = 1
 \end{aligned}
 $$
 
-若訊號是從 $n = 0$ 開始，則公式可寫為 $F(z) = \sum\limits_{n=0}^{\infty}f[n]\cdot z^{-n}$
-
-## 訊號的 Z 轉換範例
-
-### 單位樣本/脈衝訊號 (Unit-sample / Unit Impulse Signal)
-
-[💡如果忘記了點這裡複習](#基礎離散時間訊號)
-
-$$
-\begin{aligned}
-δ[n] &= 
-\left\{ 
-\begin{array}{ll}
-    1, & n = 0 \\
-    0, & n \neq 0
-\end{array}
-\right. \\
-z(δ[n]) &= \sum\limits_{n=-\infty}^{\infty}δ[n]\cdot z^{{\color{#e53935}-n}}
-&= δ[n]\cdot z^{{\color{#e53935}-}0} = 1\cdot 1 = 1
-\end{aligned}
-$$
-
-:::note[Example]
+#### 💡 Example: 組合脈衝訊號
 Use the unit-sample signal to describe a sampled data where the initial sample $x[0]=2$, $x[3]=-2$ and the rest of the samples are zero.
 
-先將 $x[n]$ 寫成 $δ[n]$ 的式子：
+**Step 1. 寫出離散表示式：**
 ![](w4_3.svg)
-$$
-\therefore x[n] = 2\cdot δ[n] - 2\cdot δ[n-3]
-$$
+$$x[n] = 2\cdot \delta[n] - 2\cdot \delta[n-3]$$
 
-接下來進行 Z 轉換：
+**Step 2. 進行 Z 轉換：**
 $$
 \begin{aligned}
 X(z) &= \sum\limits_{n=-\infty}^{\infty}x[n]\cdot z^{-n} \\
@@ -473,34 +467,20 @@ X(z) &= \sum\limits_{n=-\infty}^{\infty}x[n]\cdot z^{-n} \\
 &= 2 - 2z^{-3}
 \end{aligned}
 $$
-:::
 
-### 單位步階訊號 (Unit-step Signal)
+### 2. 單位步階訊號 (Unit-step Signal)
 
-$$
-u[n] = 
-\left\{ 
-\begin{array}{ll}
-    1, & n \ge 0 \\
-    0, & n < 0
-\end{array}
-\right.
-$$
+對於 $u[n]$，訊號在 $n \ge 0$ 時恆為 1。
 
 :::tip[REMARK]
-等比級數之和：
-$$
-\begin{aligned}
-& 1 + r + r^2 + r^3 + \dots, \text{ if} |r| < 1 \\
-&= \frac{1}{1-r}
-\end{aligned}
-$$
+當 $|r| < 1$ 時，無窮等比級數之和為：
+$1 + r + r^2 + r^3 + \dots = \frac{1}{1-r}$
 :::
 
+將 $u[n]$ 代入 Z 轉換公式，令 $r = z^{-1}$：
 $$
 \begin{aligned}
-\therefore\text{ } &Z(u[n]) \\
-&= 1 + z^{-1} + z^{-2} + \dots, \text{ }r = z{-1} \\
+Z(u[n]) &= 1 + z^{-1} + z^{-2} + z^{-3} + \dots \\
 &= \frac{1}{1-z^{-1}} = \frac{z}{z-1}
 \end{aligned}
 $$
@@ -509,13 +489,13 @@ $$
 
 | Analog Signal | Sampled Signal | Z-transformed Signal |
 | :--- | :--- | :--- |
-| | $A\delta(n)$ | $A$ |
-| $Au(t)$ | $Au(n)$ | $\frac{Az}{z - 1}$ |
-| $Ae^{-at}u(t)$ | $Ae^{-aTn}u(n)$ | $\frac{Az}{z - e^{-aT}}$ |
-| | $Ac^n u(n)$ | $\frac{Az}{z - c}, c = e^{-aT}$ |
-| $Atu(t)$ | $AnTu(n)$ | $\frac{ATz}{(z - 1)^2}$ |
-| $A\cos(\omega t)u(t)$ | $A\cos(\omega Tn)u(n)$ | $\frac{Az[z - \cos(\omega T)]}{z^2 - 2z\cos(\omega T) + 1}$ |
-| $A\sin(\omega t)u(t)$ | $A\sin(\omega Tn)u(n)$ | $\frac{Az\sin(\omega T)}{z^2 - 2z\sin(\omega T) + 1}$ |
+| | $A\delta[n]$ | $A$ |
+| $Au(t)$ | $Au[n]$ | $\frac{Az}{z - 1}$ |
+| $Ae^{-at}u(t)$ | $Ae^{-aTn}u[n]$ | $\frac{Az}{z - e^{-aT}}$ |
+| | $Ac^n u[n]$ | $\frac{Az}{z - c}, c = e^{-aT}$ |
+| $Atu(t)$ | $AnTu[n]$ | $\frac{ATz}{(z - 1)^2}$ |
+| $A\cos(\omega t)u(t)$ | $A\cos(\omega Tn)u[n]$ | $\frac{Az[z - \cos(\omega T)]}{z^2 - 2z\cos(\omega T) + 1}$ |
+| $A\sin(\omega t)u(t)$ | $A\sin(\omega Tn)u[n]$ | $\frac{Az\sin(\omega T)}{z^2 - 2z\sin(\omega T) + 1}$ |
 | $Ae^{-at}\cos(\omega t + \alpha)u(t)$ | $Ac^n \cos(\omega Tn + \alpha)$ | $\frac{Az[z\cos(\alpha) - c \cos(\alpha - \omega T)]}{z^2 - 2cz\cos(\omega T) + c^2}$ |
 
 _未完待續..._
