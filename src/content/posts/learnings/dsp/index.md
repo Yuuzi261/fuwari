@@ -436,6 +436,88 @@ $$
 
 若訊號是從 $n = 0$ 開始，則公式可寫為 $F(z) = \sum\limits_{n=0}^{\infty}f[n]\cdot z^{-n}$
 
+## 訊號的 Z 轉換範例
+
+### 單位樣本/脈衝訊號 (Unit-sample / Unit Impulse Signal)
+
+[💡如果忘記了點這裡複習](#基礎離散時間訊號)
+
+$$
+\begin{aligned}
+δ[n] &= 
+\left\{ 
+\begin{array}{ll}
+    1, & n = 0 \\
+    0, & n \neq 0
+\end{array}
+\right. \\
+z(δ[n]) &= \sum\limits_{n=-\infty}^{\infty}δ[n]\cdot z^{{\color{#e53935}-n}}
+&= δ[n]\cdot z^{{\color{#e53935}-}0} = 1\cdot 1 = 1
+\end{aligned}
+$$
+
+:::note[Example]
+Use the unit-sample signal to describe a sampled data where the initial sample $x[0]=2$, $x[3]=-2$ and the rest of the samples are zero.
+
+先將 $x[n]$ 寫成 $δ[n]$ 的式子：
+![](w4_3.svg)
+$$
+\therefore x[n] = 2\cdot δ[n] - 2\cdot δ[n-3]
+$$
+
+接下來進行 Z 轉換：
+$$
+\begin{aligned}
+X(z) &= \sum\limits_{n=-\infty}^{\infty}x[n]\cdot z^{-n} \\
+&= x[0]\cdot z^{-0} + x[3]\cdot z^{-3} \\
+&= 2 - 2z^{-3}
+\end{aligned}
+$$
+:::
+
+### 單位步階訊號 (Unit-step Signal)
+
+$$
+u[n] = 
+\left\{ 
+\begin{array}{ll}
+    1, & n \ge 0 \\
+    0, & n < 0
+\end{array}
+\right.
+$$
+
+:::tip[REMARK]
+等比級數之和：
+$$
+\begin{aligned}
+& 1 + r + r^2 + r^3 + \dots, \text{ if} |r| < 1 \\
+&= \frac{1}{1-r}
+\end{aligned}
+$$
+:::
+
+$$
+\begin{aligned}
+\therefore\text{ } &Z(u[n]) \\
+&= 1 + z^{-1} + z^{-2} + \dots, \text{ }r = z{-1} \\
+&= \frac{1}{1-z^{-1}} = \frac{z}{z-1}
+\end{aligned}
+$$
+
+## Z 轉換常用對照表
+
+| Analog Signal | Sampled Signal | Z-transformed Signal |
+| :--- | :--- | :--- |
+| | $A\delta(n)$ | $A$ |
+| $Au(t)$ | $Au(n)$ | $\frac{Az}{z - 1}$ |
+| $Ae^{-at}u(t)$ | $Ae^{-aTn}u(n)$ | $\frac{Az}{z - e^{-aT}}$ |
+| | $Ac^n u(n)$ | $\frac{Az}{z - c}, c = e^{-aT}$ |
+| $Atu(t)$ | $AnTu(n)$ | $\frac{ATz}{(z - 1)^2}$ |
+| $A\cos(\omega t)u(t)$ | $A\cos(\omega Tn)u(n)$ | $\frac{Az[z - \cos(\omega T)]}{z^2 - 2z\cos(\omega T) + 1}$ |
+| $A\sin(\omega t)u(t)$ | $A\sin(\omega Tn)u(n)$ | $\frac{Az\sin(\omega T)}{z^2 - 2z\sin(\omega T) + 1}$ |
+| $Ae^{-at}\cos(\omega t + \alpha)u(t)$ | $Ac^n \cos(\omega Tn + \alpha)$ | $\frac{Az[z\cos(\alpha) - c \cos(\alpha - \omega T)]}{z^2 - 2cz\cos(\omega T) + c^2}$ |
+
 _未完待續..._
 
 :::note
