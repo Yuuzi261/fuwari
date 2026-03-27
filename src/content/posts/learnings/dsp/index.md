@@ -506,6 +506,77 @@ $$
 | $A\sin(\omega t)u(t)$ | $A\sin(\omega Tn)u[n]$ | $\frac{Az\sin(\omega T)}{z^2 - 2z\sin(\omega T) + 1}$ |
 | $Ae^{-at}\cos(\omega t + \alpha)u(t)$ | $Ac^n \cos(\omega Tn + \alpha)$ | $\frac{Az[z\cos(\alpha) - c \cos(\alpha - \omega T)]}{z^2 - 2cz\cos(\omega T) + c^2}$ |
 
+## 差分方程式與轉移函數
+
+在連續時間系統中，我們使用微分方程式 (Differential Equation) 來描述系統，並利用拉普拉斯轉換求解；而在離散時間系統中，我們則使用 **差分方程式 (Difference Equation)** 來描述，並透過 Z 轉換來處理。
+
+### Z 轉換的平移特性
+
+這裡先提一下 Z 轉換的平移特性，在時域延遲 $k$ 個單位的 $x[n-k]$，經過 Z 轉換後會乘上 $z^{-k}$，即為 $z^{-k}\cdot X(z)$
+
+#### 證明：
+$$
+\begin{aligned}
+\mathcal{Z}\{x[n-k]\} &= \sum_{n=-\infty}^{\infty} x[n-k] \cdot z^{-n} \\
+&\text{let } u = n-k \Rightarrow {\color{#3071c4}n = u+k} \\
+\therefore \mathcal{Z}\{x[n-k]\} &= \sum_{{\color{#3071c4}n}=-\infty}^{\infty} x[u] \cdot z^{-{\color{#3071c4}(u+k)}} \\
+&= \sum_{{\color{#3071c4}u}=-\infty}^{\infty} x[u] \cdot z^{-u} \cdot {\color{#e53935}z^{-k}} \\
+&= z^{-k} \cdot \underbrace{\sum_{u=-\infty}^{\infty} x[u] \cdot z^{-u}}_{{\color{#3071c4}=X(z)}} \\
+&= z^{-k} \cdot X(z)
+\end{aligned}
+$$
+
+#### 簡單總結：
+
+| 原始時域訊號 | Z 轉換後頻域訊號 |
+| :--- | :--- |
+| $x[n]$ | $X(z)$ |
+| $x[n-k]$ | $z^{-k}\cdot X(z)$ |
+| $f[n]$ | $F(z)$ |
+| $f[n-k]$ | $z^{-k}\cdot F(z)$ |
+| $f[n+k]$ | $z^{k}\cdot F(z)$ |
+
+### 舉個栗子|⩊･)ﾉ🌰
+
+有個 DSP 系統，它的差分方程式為：$y[n] -2\cdot y[n-1] = 0.5\cdot x[n-1]$，求它的 Block Diagram 。</br>
+畫出來要像下面這樣：
+![](w5_1.svg)
+
+我們對差分方程式進行整理：
+
+$$
+\begin{aligned}
+y[n] -2\cdot y[n-1] = 0.5\cdot x[n-1] \\
+\therefore y[n] = 0.5\cdot x[n-1] + 2\cdot y[n-1]
+\end{aligned}
+$$
+
+於是我們就能畫出：
+![](w5_2.svg)
+
+### 轉移函數
+
+系統的轉移函數定義為輸出 $Y(z)$ 與輸入 $X(z)$ 的比值。承接上面的例子，首先對差分方程式進行 Z 轉換，根據上面證明的平移特性，我們可以很快的寫出：
+
+$$
+\begin{aligned}
+y[n] -2\cdot y[n-1] &= 0.5\cdot x[n-1] \\
+& \downarrow \text{ Z-Transform} \\
+Y(z) -2\cdot z^{-1}\cdot Y(z) &= 0.5\cdot z^{-1}\cdot X(z) \\
+\therefore Y(z) (1-2z^{-1}) &= 0.5\cdot z^{-1}\cdot X(z)
+\end{aligned}
+$$
+
+這個轉移函數 $T(z)$ 相當於系統的靈魂，包含了系統所有的特性：
+![](w5_3.svg)
+
+$$
+\begin{aligned}
+{\color{#e53935}T(z)}\equiv\frac{Y(z)}{X(z)} = \frac{0.5\cdot z^{-1}}{1-2\cdot z^{-1}} \\
+\text{i.e., } Y(z) = {\color{#e53935}T(z)}\cdot X(z)
+\end{aligned}
+$$
+
 _未完待續..._
 
 :::note
