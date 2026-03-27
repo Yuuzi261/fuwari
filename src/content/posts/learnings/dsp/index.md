@@ -567,15 +567,14 @@ Y(z) -2\cdot z^{-1}\cdot Y(z) &= 0.5\cdot z^{-1}\cdot X(z) \\
 \end{aligned}
 $$
 
-這個轉移函數 $T(z)$ 相當於系統的靈魂，包含了系統所有的特性：
+這個轉移函數 $T(z)$ 是描述系統特性的核心，它決定了系統面對任何輸入時的反應：
 ![](w5_3.svg)
 
 $$
-\begin{aligned}
-{\color{#e53935}T(z)}\equiv\frac{Y(z)}{X(z)} = \frac{0.5\cdot z^{-1}}{1-2\cdot z^{-1}} \\
-\text{i.e., } Y(z) = {\color{#e53935}T(z)}\cdot X(z)
-\end{aligned}
+{\color{#e53935}T(z)}\equiv\frac{Y(z)}{X(z)} = \frac{0.5\cdot z^{-1}}{1-2\cdot z^{-1}}
 $$
+
+只要有了 $T(z)$，我們就能輕鬆算出任何輸入對應的結果：$Y(z) = T(z)\cdot X(z)$
 
 _未完待續..._
 
