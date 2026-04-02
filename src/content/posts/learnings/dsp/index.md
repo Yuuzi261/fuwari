@@ -576,6 +576,37 @@ $$
 
 只要有了 $T(z)$，我們就能輕鬆算出任何輸入對應的結果：$Y(z) = T(z)\cdot X(z)$
 
+---
+
+# 數位濾波器與 DSP 系統的頻率響應
+
+Z 轉換出來的結果轉移函數 $T(z)$，是一個包含所有可能 $z$ 值的複數平面。這個平面通常可用來分析系統的「穩定性」，但它還不是我們直觀能看懂的物理頻率，因此這個章節重點在於如何從 Z 域轉換到頻域，並計算系統的增益與相位。
+
+再複習一下這張圖，講 [Z 轉換](#z-轉換) 的時候出現過：
+
+![](w5_4.png)
+
+當初在 Z 域以及頻域之間的箭頭打了一顆星星，現在就要來提到這個部分，一樣拿連續時間系統跟離散時間系統做一個對照：
+
+- **連續時間系統：** 拉普拉斯轉換（$s$ 域）$\rightarrow$ 鎖定虛數軸（$s = jw$）$\rightarrow$ 變成傅立葉轉換（頻域）
+- **離散時間系統：** Z 轉換（$z$ 域）$\rightarrow$ 鎖定單位圓（$z = e^{j\Omega}$）$\rightarrow$ 變成離散時間傅立葉轉換（頻域）
+
+### 為什麼 $z = e^{j\Omega}$？
+
+$$
+\begin{aligned}
+x(t-T) \xrightarrow{\mathcal{L}\text{-trf}} \mathcal{L}\{x(t-T)\} &= {\color{#e53935}e^{-sT}}\cdot X(s) \\
+x[nT-T] \xrightarrow{\text{z-trf}} Z\{x[n-1]\} &= {\color{#e53935}z^{-1}}\cdot X(z) \\
+z^{-1} = e^{-sT} = (e^{sT})^{-1} \text{ } & \therefore z = e^{sT} \\
+\because s = j\omega \Rightarrow \text{Frequency} & \text{ response} \\
+\therefore z = e^{{\color{#3071c4}j\omega} T} = e^{j{\color{#3071c4}\Omega}}
+\end{aligned}
+$$
+
+## 振幅響應與增益
+
+✍️TODO
+
 _未完待續..._
 
 :::note
