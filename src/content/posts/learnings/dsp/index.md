@@ -107,11 +107,11 @@ $$
 - **累加關係：** $u[n]=\sum_{k=0}^\infty \delta[n-k]$ 或 $u[n]=\sum_{k=-\infty}^n \delta[k]$
 - **差分關係：** $\delta[n]=u[n]-u[n-1]$
 
-### 複數平面與歐拉公式 (Euler's Formula)
+### 複數平面與尤拉公式 (Euler's Formula)
 
 在處理複數指數訊號時常用到：
 
-- 歐拉公式：$e^{j \phi}=\cos \phi+j\sin \phi$
+- 尤拉公式：$e^{j \phi}=\cos \phi+j\sin \phi$
 - 極座標表示：$A=|A| e^{j \phi_1}$，$\alpha= |\alpha| e^{j \phi_2}$
 - 因此 $x[n]=A \alpha^n= |A| |\alpha|^n e^{j(n \phi_2 + \phi_1)}$
 
@@ -603,9 +603,85 @@ z^{-1} = e^{-sT} = (e^{sT})^{-1} \text{ } & \therefore z = e^{sT} \\
 \end{aligned}
 $$
 
-## 振幅響應與增益
+## 系統的頻率響應分析
 
-✍️TODO
+### 振幅響應與增益 (Magnitude Response / Gain)
+
+- 系統的增益即為轉移函數在 $z = e^{j\Omega}$ 時的絕對值大小：$\text{Gain} = |T(z)|_{z=e^{j\Omega}}$
+- 若要以分貝表示，公式為：$\text{Gain}_{\text{dB}} = 20\cdot\log(|T(z)|_{z=e^{j\Omega}})$
+- 可利用尤拉公式 (Euler formula) $e^{j\Omega} = \cos(\Omega) + j\sin(\Omega)$ 將數值代入轉移函數，計算特定頻率下的增益
+
+:::tip[Remark: Euler Formula]
+$$
+\begin{aligned}
+e^{j\theta} &= \cos(\theta) + j\sin(\theta), \quad j = \sqrt{-1} \\
+\therefore z = e^{j\Omega} &= \cos(\Omega) + j\sin(\Omega)
+\end{aligned}
+$$
+代入轉移函數後會得到一個複數 $T(e^{j\Omega}) = a + jb$，其絕對值（也就是增益）算法為：
+$$|T(e^{j\Omega})| = \sqrt{a^2 + b^2}$$
+:::
+
+### 相位響應 (Phase Response)
+
+除了振幅（增益）會改變之外，訊號經過系統後，波形的「相位」也會產生偏移。
+將 $z = e^{j\Omega}$ 代入轉移函數後得到的複數 $a + jb$，我們也可以求出它的角度，這個角度就是相位的變化量 $\phi$：
+
+$$
+\phi = \tan^{-1}\left(\frac{b}{a}\right) = \tan^{-1}\left(\frac{\text{虛部 Im}}{\text{實部 Re}}\right)
+$$
+
+### 極點與零點 (Poles & Zeros)
+
+轉移函數 $T(z)$ 通常可以表示成一個帶有分子跟分母的有理函數 (Rational function)：
+$$T(z) = \frac{Y(z)}{X(z)} = \frac{N(z)}{D(z)}$$
+
+- **零點 (Zeros)：** 讓分子 $N(z) = 0$ 的 $z$ 值。在這些特定的 $z$ 值下，系統的輸出為 0（增益為 0），代表這些頻率的訊號會被完全阻擋。
+- **極點 (Poles)：** 讓分母 $D(z) = 0$ 的 $z$ 值。在這些特定的 $z$ 值下，系統增益會趨近於無限大，極點的位置對於判斷一個系統是否「穩定」非常關鍵。
+
+## 範例與練習
+
+Determine the gain in dB at 2 rad/s and 37 rad/s for the digital fitter with the following transfer function with the sampling period $T = 0.02\text{s}$. Also state if it is a highpass or lowpass filter. $T(z) = \frac{0.8333(z-1)}{z-0.667}$.
+
+:::note[ANS]
+**Step 1. 先把公式準備好**
+
+將尤拉公式 $z = e^{j\Omega} = \cos(\Omega) + j\sin(\Omega)$ 代入轉移函數：
+$$
+T(e^{j\Omega}) = \frac{0.8333(\cos\Omega - 1 + j\sin\Omega)}{(\cos\Omega - 0.667) + j\sin\Omega}
+$$
+接著我們要算增益的絕對值（分子分母分別取絕對值 $\sqrt{\text{實部}^2 + \text{虛部}^2}$）：
+$$
+|T(e^{j\Omega})| = \frac{0.8333 \cdot \sqrt{(\cos\Omega - 1)^2 + (\sin\Omega)^2}}{\sqrt{(\cos\Omega - 0.667)^2 + (\sin\Omega)^2}}
+$$
+
+分子根號內展開：$\cos^2\Omega - 2\cos\Omega + 1 + \sin^2\Omega = 2 - 2\cos\Omega$ </br>
+分母根號內展開：$\cos^2\Omega - 1.334\cos\Omega + 0.444889 + \sin^2\Omega = 1.444889 - 1.334\cos\Omega$
+
+**Step 2. 代入 $\omega = 2\text{ rad/s}$**
+- $\Omega = \omega T = 2 \times 0.02 = 0.04\text{ rad}$
+- $\cos(0.04) \approx 0.9992$
+- 代入剛剛整理好的絕對值公式：
+  - 分子：$0.8333 \times \sqrt{2 - 2(0.9992)} = 0.8333 \times \sqrt{0.0016} = 0.8333 \times 0.04 \approx 0.0333$
+  - 分母：$\sqrt{1.444889 - 1.334(0.9992)} = \sqrt{1.444889 - 1.3329} \approx \sqrt{0.1119} \approx 0.3345$
+  - $\text{Gain} = \frac{0.0333}{0.3345} \approx 0.0995$
+- 換算 dB：$20\log_{10}(0.0995) \approx \mathbf{-20.04\text{ dB}}$（增益大幅衰減！）
+
+**Step 3. 代入 $\omega = 37\text{ rad/s}$**
+- $\Omega = \omega T = 37 \times 0.02 = 0.74\text{ rad}$
+- $\cos(0.74) \approx 0.7385$
+- 代入絕對值公式：
+  - 分子：$0.8333 \times \sqrt{2 - 2(0.7385)} = 0.8333 \times \sqrt{0.523} \approx 0.8333 \times 0.7232 \approx 0.6026$
+  - 分母：$\sqrt{1.444889 - 1.334(0.7385)} = \sqrt{1.444889 - 0.9851} \approx \sqrt{0.4597} \approx 0.6780$
+  - $\text{Gain} = \frac{0.6026}{0.6780} \approx 0.8888$
+- 換算 dB：$20\log_{10}(0.8888) \approx \mathbf{-1.02\text{ dB}}$（接近 0 dB，訊號無損通過！）
+
+**Step 4. 判斷濾波器類型**
+根據上面的計算：
+- 低頻率 ($\omega = 2$) 時，訊號衰減很嚴重 (-20 dB)
+- 高頻率 ($\omega = 37$) 時，訊號順利通過 (-1 dB)
+- 結論：這是一個高通濾波器
+:::
 
 _未完待續..._
 
