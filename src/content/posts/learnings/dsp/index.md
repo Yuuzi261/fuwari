@@ -121,7 +121,7 @@ _✍️TODO 以後想到再補圖_
 
 # 訊號取樣的影響
 
-## 取樣與混疊 (Sampling and Aliasing)
+## 取樣與混疊
 
 ### 基本定義
 
@@ -201,7 +201,7 @@ $$
 
 <small>🔗圖片來源：https://www.ni.com/docs/zh-TW/bundle/labwindows-cvi/page/advancedanalysisconcepts/aliasing.html</small>
 
-## 奈奎斯特-香農取樣定理 (Nyquist-Shannon Sampling Theorem)
+## 奈奎斯特-香農取樣定理
 
 我們現在知道如果取樣頻率不夠高，就會在這種週期性的訊號上產生混疊現象，那如果不想要產生混疊現象的話，具體來說需要多高的取樣頻率呢？**奈奎斯特-香農取樣定理**給出了答案，並定義了所謂的**奈奎斯特頻率 (Nyquist Frequency)**，又或者稱作**奈奎斯特極限 (Nyquist Limit)**。
 
@@ -224,7 +224,7 @@ $$
 \end{aligned}
 $$
 
-## 反混疊濾波器（Anti-aliasing Filter）
+## 反混疊濾波器
 
 _✍️TODO 以後補_
 
@@ -682,6 +682,83 @@ $$
 - 高頻率 ($\omega = 37$) 時，訊號順利通過 (-1 dB)
 - 結論：這是一個高通濾波器
 :::
+
+---
+
+# IIR 濾波器設計
+
+前面介紹了數位濾波器的規格以及 Z 轉換如何幫助我們在頻域進行分析，接下來就要進入重頭戲了：如何實際設計出一個濾波器！我們首先從 IIR 濾波器開始談起。
+
+## 系統與差分方程式
+
+複習一下，在 DSP 系統中，輸入訊號 $x[n]$ 經過系統 $T$ 轉換後會得到輸出 $y[n]$，我們可以將其表示為 $y[n]=T(x[n])$。
+常見的系統運算包含了：
+- **延遲系統 (Delay System)：** 輸出直接是過去輸入的延遲，表示為 $y[n]=x[n-d]$
+- **移動平均系統 (Moving-Average System)：** 輸出是過去幾個輸入訊號的平均，例如三階的移動平均可以寫成 $y[n]=\frac{1}{3}(x[n]+x[n-1]+x[n-2])$
+
+如果我們把這些概念推廣，系統的輸出其實可以由「過去的輸出」與「現在及過去的輸入」組合而成，形成了**一般差分方程式** (General Difference Equation)，公式如下：
+
+$$
+y[n]=a_{1}y[n-1]+a_{2}y[n-2]+\dots+a_{p}y[n-p] + b_{0}x[n]+b_{1}x[n-1]+\dots+b_{q}x[n-q]
+$$
+
+$p$ 和 $q$ 分別代表回饋 (Feedback, 過去的輸出) 與前饋 (Feedfoward, 現在與過去的輸入) 的階數。
+
+### 轉移函數 (Transfer Function)
+
+在時域看這長長一串方程式有點痛苦，所以我們把它丟進 Z 轉換的魔法陣裡。利用上一章提到的平移特性（$x[n-k] \xrightarrow{\mathcal{Z}} z^{-k}X(z)$），我們可以把差分方程式整理成系統的轉移函數 $H(z)$：
+
+$$
+\begin{aligned}
+Y(z) &= a_{1}z^{-1}Y(z) + a_{2}z^{-2}Y(z) + \dots + a_{p}z^{-p}Y(z) \\
+     &\quad + b_{0}X(z) + b_{1}z^{-1}X(z) + \dots + b_{q}z^{-q}X(z)
+\end{aligned}
+$$
+
+經過移項與提出公因數後，我們就能得到系統的轉移函數 $H(z)$：
+
+$$
+H(z) = \frac{Y(z)}{X(z)} = \frac{b_{0}+b_{1}z^{-1}+b_{2}z^{-2}+\dots+b_{q}z^{-q}}{1-a_{1}z^{-1}-a_{2}z^{-2}-\dots-a_{p}z^{-p}}
+$$
+
+:::note
+這裡的 $H(z)$ 跟前面提到的 $T(z)$ 是同一個東西，其實在 DSP 中用 $H(z)$ 應該是比較普遍的，但避免混淆，之後會保持跟前面一樣使用 $T(z)$
+:::
+
+## FIR 與 IIR 濾波器
+
+根據差分方程式中是否含有「過去的輸出（即 Feedback）」，我們可以將數位濾波器分為兩大家族：
+
+1. **FIR（Finite Impulse Response, 有限脈衝響應）：**
+   - 系統中**沒有回饋 (No feedback)**
+   - 也就是差分方程式中的係數 $a_{1}=a_{2}=\dots=a_{p}=0$
+2. **IIR（Infinite Impulse Response, 無限脈衝響應）：**
+   - 系統中**具有回饋 (has feedback)**
+   - 代表 $a_{1} \neq 0$ 或是 $a_{2} \neq 0$ $\dots$ $a_{k} \neq 0$ 等，這會導致脈衝響應在理論上會無限延伸下去
+
+## 四大基本類比濾波器
+
+要無中生有設計出一個數位 IIR 濾波器有點難，所以工程界習慣先參考已經發展非常成熟的「類比濾波器」，再將其轉換成數位濾波器。最經典的有以下四種：
+
+1. Butterworth Filter
+    ![](./w6_1.png)
+2. Chebyshev Type I Filter
+    ![](./w6_2.png)
+3. Chebyshev Type II Filter (Inverse Chebyshev Filter)
+    ![](./w6_3.png)
+4. Elliptic Filter (Cauer Filter)
+    ![](./w6_4.png)
+
+<small>🔗圖片來源：https://pages.hmc.edu/mspencer/e157/fa24/slides/09.pdf</small>
+
+各種數位濾波器的特色如下表所示：
+
+| 濾波器 | 通帶 | 阻帶 | 過渡帶斜率 | Ripple 位置 | 階數需求 | 設計難度 | 適用情境 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Butterworth** | 完全平坦 | 單調下降 | 最慢 | 無 | 高 | 最簡單 | 音訊、量測 |
+| **Chebyshev I** | 有 ripple | 單調下降 | 較快 | 通帶 | 較低 | 中等 | 通訊 |
+| **Chebyshev II** | 平坦 | 有 ripple | 較快 | 阻帶 | 較低 | 中等 | 精準通帶 |
+| **Elliptic** | 有 ripple | 有 ripple | 最快 | 通帶/阻帶 | 最低 | 最複雜 | 高效率頻譜 |
 
 _未完待續..._
 
