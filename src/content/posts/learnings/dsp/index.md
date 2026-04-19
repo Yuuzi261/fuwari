@@ -788,15 +788,15 @@ y[n] = \left. 10 \cdot e^{-10t} \right|_{t=0.1n} = 10 \cdot e^{-10(0.1n)} = 10 \
 $$
 
 **Step 3. 進行 Z 轉換** </br>
-將取樣後的 $y[n]$ 進行 Z 轉換求出 $T(z)$：
+將取樣後的 $y[n]$ 進行 Z 轉換求出 $Y(z)$：
 $$
-T(z) = \mathcal{Z}\{10 \cdot e^{-n}\} = \frac{10z}{z-e^{-1}}
+Y(z) = \mathcal{Z}\{10 \cdot e^{-n}\} = \frac{10z}{z-e^{-1}}
 $$
 
 **Step 4. 進行增益補償並求出 $H(z)$** </br>
 為了補償取樣過程中產生的 $1/T$ 倍頻譜放大效應，須將 Z 轉換結果乘上取樣週期 $T$ 以校正增益，使其與原類比濾波器量級一致：
 $$
-H(z) = T \cdot T(z) = 0.1 \cdot \frac{10z}{z-e^{-1}} = \frac{1}{1-e^{-1}z^{-1}}
+H(z) = T \cdot Y(z) = 0.1 \cdot \frac{10z}{z-e^{-1}} = \frac{1}{1-e^{-1}z^{-1}}
 $$
 
 :::tip[為什麼要乘上取樣週期 $T$？]
@@ -921,7 +921,7 @@ $$
 根據步階不變法定義，$T(z) = \frac{Y(z)}{X(z)}$，而數位單位步階 $X(z) = \frac{z}{z-1}$。因此，我們必須將 $Y(z)$ 乘上修正項 $\frac{z-1}{z}$
 $$
 \begin{gathered}
-T(z) = \frac{z-1}{z} \cdot Y(z) = \frac{z-1}{z} \cdot \frac{z(1-e^{-1})}{(z-1)(z-e^{-1})}
+T(z) = \frac{z-1}{z} \cdot Y(z) = \frac{z-1}{z} \cdot \frac{z(1-e^{-1})}{(z-1)(z-e^{-1})} \\
 T(z) = \frac{1-e^{-1}}{z-e^{-1}}
 \end{gathered}
 $$
