@@ -828,7 +828,7 @@ _✍️TODO：圖之後補_
 
 ### 進階範例|⩊･)ﾉ🥥：二階系統的脈衝不變法
 
-假設我們有一個二階低通類比濾波器，其轉移函數為 $T(s)=\frac{15}{s(s+15)}$，取樣週期 $T = 0.05\text{s}$，我們來試著找出它的數位 IIR 濾波器差分方程式。
+Find the digital IIR filter for the second-order lowpass analog filter given by the following equation for $T(s) = \frac{15}{s(s+15)}$ for a sampling period $T = 0.05 \text{ s}$.
 
 **Step 1. 部分分式展開 (Partial Fraction Expansion, PFE)** </br>
 為了方便進行反拉普拉斯轉換，我們先把 $T(s)$ 拆開：
@@ -877,7 +877,8 @@ T(z) = \frac{z-1}{z} \cdot \mathcal{Z}\left\{ \left. \mathcal{L}^{-1}\left[\frac
 $$
 
 ### 舉個栗子|⩊･)ﾉ🌰
-要找出近似一階低通 Butterworth 類比濾波器 $T(s) = \frac{10}{s+10}$ 的數位濾波器，假設取樣時間 $T = 0.1\text{s}$。
+
+Finding the Step Invariant IIR filter to approximate a first-order lowpass Butterworth (analog) filter $T(s) = \frac{10}{s+10}$, assuming sampling time $T = 0.1 \text{ s}$.
 
 **Step 1：求類比系統的步階響應 $Y(s)$** </br>
 為了求步階響應，我們假設輸入 $X(s)$ 為單位步階函數 $\frac{1}{s}$
@@ -938,7 +939,8 @@ s = \frac{2}{T} \cdot \frac{z-1}{z+1}
 $$
 
 ### 舉個栗子|⩊･)ﾉ🌰
-給定一個一階高通類比濾波器 $T(s) = \frac{s}{s+10}$，要求使用 BLT 方法找出它的數位濾波器 $T(z)$，並假設取樣週期 $T = 0.05\text{s}$。
+
+Given the following first-order highpass analog filter $T(s) = \frac{s}{s+10}$, use the BLT method to find an IIR digital filter $T(z)$ to approximate it for $T = 0.05 \text{ s}$.
 
 直接代入轉換公式 $s = \frac{2}{0.05} \cdot \frac{z-1}{z+1} = 40 \cdot \frac{z-1}{z+1}$：
 $$
